@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
+#include <algorithm>
 
 #include "Book.h"
 
@@ -27,7 +28,9 @@ class Library {
 
     //Setters
     void setBook(Book& myBook);
-
+    void returnBook(const std::string& isbn);
+    void borrowBook(const std::string& isbn);
+    void eraseBook(const std::string& isbn);
 
 };
 

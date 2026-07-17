@@ -6,6 +6,8 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
+#include <algorithm>
+
 
 class Book {
     private:
