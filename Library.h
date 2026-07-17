@@ -12,7 +12,23 @@
 class Library {
     private:
     std::vector<Book> arr;
+
+    
     public:
+
+    //Default
+    Library();
+
+    //Parameterized constructor
+    Library(std::vector<Book> new_arr);
+
+    //Getters
+    Book getBook(std::string& isbn) const;
+
+    //Setters
+    void setBook(Book& myBook);
+
+
 };
 
 
