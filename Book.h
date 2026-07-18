@@ -36,11 +36,11 @@ class Book {
 // const == this method is read-only.It will not change any variable
     
     // Setters
-    void setTitle(std::string& title);
-    void setAuthor(std::string& author);
+    void setTitle(const std::string& title);
+    void setAuthor(const std::string& author);
     void setYear(int year); 
-    void setGenre(std::string& genre);
-    void setISBN(std::string& isbn);
+    void setGenre(const std::string& genre);
+    void setISBN(const std::string& isbn);
     void setAvailable(bool available);
 
 

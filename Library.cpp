@@ -13,7 +13,7 @@
 Library::Library() {arr = {};}
 
 //Parameterized constructor
-Library::Library(std::vector<Book> newArr) {this-> arr = newArr;}
+Library::Library(const std::vector<Book>& newArr) {this-> arr = newArr;}
 
 //Getters
 Book Library::getBook(const std::string& isbn) const {
@@ -76,6 +76,11 @@ void Library::eraseBook(const std::string& isbn) {
 
 
 
-void Library::setBook(const Book& myBook) {arr.push_back(myBook);}
+void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
+
+
+void Library::displayAllBooks() {
+    for (auto &currentBook : this->arr) {currentBook.display();}
+}
 
 

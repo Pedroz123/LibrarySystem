@@ -21,17 +21,20 @@ class Library {
     Library();
 
     //Parameterized constructor
-    Library(const std::vector<Book> new_arr);
+    Library(const std::vector<Book>& new_arr);
 
     //Getters
     Book getBook(const std::string& isbn) const;
 
     //Setters
-    void setBook(const Book& myBook);
+    void addBook(const Book& myBook);
     void returnBook(const std::string& isbn);
     void borrowBook(const std::string& isbn);
     void eraseBook(const std::string& isbn);
 
+    //display
+
+    void displayAllBooks();
 };
 
 

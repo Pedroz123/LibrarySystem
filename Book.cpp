@@ -10,7 +10,7 @@
 Book::Book() {
     title = "No name";
     author = "No author";
-    int year = 0;
+    year = 0;
     genre = "No genre";
     isbn = "0000000000";
     available = true;
@@ -38,11 +38,11 @@ bool Book::getAvailable() const {return available;}
 
 
 //Setters
-void Book::setTitle(std::string& title) {this -> title = title;}
-void Book::setAuthor(std::string& author) {this->author = author;}
+void Book::setTitle(const std::string& title) {this -> title = title;}
+void Book::setAuthor(const std::string& author) {this->author = author;}
 void Book::setYear(int year) {this->year = year;}
-void Book::setGenre(std::string& genre) {this->genre = genre;}
-void Book::setISBN(std::string& isbn) {this-> isbn = isbn;}
+void Book::setGenre(const std::string& genre) {this->genre = genre;}
+void Book::setISBN(const std::string& isbn) {this-> isbn = isbn;}
 void Book::setAvailable(bool available) {this-> available = available;}
 
 
@@ -54,6 +54,8 @@ void Book::display() {
     std::cout << "ISBN: " << isbn << "\n";
     std::cout << "Availability: " << available << "\n";
 }
+
+
 
 /*
 

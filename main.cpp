@@ -1,9 +1,15 @@
-// a
 #include <iostream>
-#include <cmath>
+#include <string>
 #include <vector>
+#include <cmath>
+#include <cstdlib>
+#include <algorithm>
 
-int validation(int myInput);
+#include "Book.h"
+#include "Library.h"
+
+
+//int validation(int myInput);
 int main() {
 
     std::cout << "Hello this is a Library System ";
