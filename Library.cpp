@@ -16,12 +16,13 @@ Library::Library() {arr = {};}
 Library::Library(std::vector<Book> newArr) {this-> arr = newArr;}
 
 //Getters
-Book Library::getBook(std::string& isbn) const {
+Book Library::getBook(const std::string& isbn) const {
     for (const auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) return currentBook;
     }
     throw std::runtime_error("Book not found!"); // emergency
 }
+
 
 //Setters
 
@@ -59,18 +60,22 @@ void Library::borrowBook(const std::string& isbn) {
     throw std::runtime_error("Book not found!"); // emergency
 }
 
+
+//Erase-Remove Idiom  O(n)
+// https://stackoverflow.com/questions/74724178/how-to-delete-an-element-from-a-vector-of-custom-objects
+// https://www.geeksforgeeks.org/cpp/erase-remove-idiom-in-cpp/
 void Library::eraseBook(const std::string& isbn) {
-    for (auto& currentBook : this-> arr) {
-        if (currentBook.getISBN() == isbn) {
-            arr.erase(std::find(arr.begin(), arr.end(), currentBook));
-            arr.pop_back();
-        }
-    }
+
+    auto it = arr.end();
+    arr.erase(std::remove_if(arr.begin(), arr.end(), [isbn](const Book &b) {
+        return b.getISBN() == isbn;
+    }), arr.end());
+    
+    if (it == arr.end()) throw std::runtime_error("Book not found!"); // emergency
 }
 
 
 
-
-void Library::setBook(Book& myBook) {arr.push_back(myBook);}
+void Library::setBook(const Book& myBook) {arr.push_back(myBook);}
 
 

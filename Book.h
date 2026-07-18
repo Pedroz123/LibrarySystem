@@ -26,6 +26,7 @@ class Book {
         std::string genre, std::string isbn, bool available);
     
     //Getters
+    // const because getters generally should not change the object this allows us to keep the class "const-correct"
     std::string getTitle() const;
     std::string getAuthor() const;
     int getYear() const;
