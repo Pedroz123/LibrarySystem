@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <algorithm>
+#include <exception>
 
 
 #include "Library.h"
@@ -57,6 +58,7 @@ void Library::borrowBook(const std::string& isbn) {
             return;
         }
     }
+    // type const char  
     throw std::runtime_error("Book not found!"); // emergency
 }
 
@@ -65,13 +67,17 @@ void Library::borrowBook(const std::string& isbn) {
 // https://stackoverflow.com/questions/74724178/how-to-delete-an-element-from-a-vector-of-custom-objects
 // https://www.geeksforgeeks.org/cpp/erase-remove-idiom-in-cpp/
 void Library::eraseBook(const std::string& isbn) {
-
-    auto it = arr.end();
+    /*
     arr.erase(std::remove_if(arr.begin(), arr.end(), [isbn](const Book &b) {
         return b.getISBN() == isbn;
     }), arr.end());
-    
-    if (it == arr.end()) throw std::runtime_error("Book not found!"); // emergency
+    */
+    auto removePoint = std::remove_if(arr.begin(), arr.end(), [&isbn](const Book &b) {
+        return b.getISBN() == isbn;
+    });
+
+   if (removePoint == arr.end()) throw std::runtime_error("Book not found!"); // emergency
+    arr.erase(removePoint, arr.end());
 }
 
 

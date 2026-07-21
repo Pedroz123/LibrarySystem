@@ -2,7 +2,9 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <cstdlib>
 #include <algorithm>
+#include <exception>
 
 
 #include "Book.h"
