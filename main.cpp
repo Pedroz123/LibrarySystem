@@ -91,10 +91,10 @@ Book inputBook() {
     bool available;
 
     std::cout << "\nName of the book: ";
-    std::cin >> name;
+    getline(std::cin, name);
             
     std::cout << "\nAuthor of the book: " ;
-    std::cin >> author;
+    getline(std::cin, author);
 
     std::cout << "\nYear of publication: ";
     std::cin >> year;
