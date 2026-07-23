@@ -24,6 +24,13 @@ Book Library::getBook(const std::string& isbn) const {
     throw std::runtime_error("Book not found!"); // emergency
 }
 
+bool Library::isbnExists(const std::string& isbn) {
+    for (const auto& currentBook : this->arr) {
+        if (currentBook.getISBN() == isbn) return false;
+    }
+    return true;
+}
+
 
 //Setters
 
@@ -85,8 +92,8 @@ void Library::eraseBook(const std::string& isbn) {
 void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
 
 
-void Library::displayAllBooks() {
-    for (auto &currentBook : this->arr) {currentBook.display();}
+void Library::displayAllBooks() const {
+    for (const auto &currentBook : this->arr) {currentBook.display();}
 }
 
 

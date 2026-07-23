@@ -26,6 +26,8 @@ class Library {
 
     //Getters
     Book getBook(const std::string& isbn) const;
+    bool isbnExists(const std::string& isbn);
+    
 
     //Setters
     void addBook(const Book& myBook);
@@ -34,8 +36,7 @@ class Library {
     void eraseBook(const std::string& isbn);
 
     //display
-
-    void displayAllBooks();
+    void displayAllBooks() const;
 };
 
 

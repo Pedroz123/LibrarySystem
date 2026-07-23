@@ -46,7 +46,7 @@ class Book {
 
 
     // prints all the private variables
-    void display();
+    void display() const;
 
 };
 

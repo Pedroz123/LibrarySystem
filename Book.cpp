@@ -48,13 +48,18 @@ void Book::setISBN(const std::string& isbn) {this-> isbn = isbn;}
 void Book::setAvailable(bool available) {this-> available = available;}
 
 
-void Book::display() {
+void Book::display() const{
     std::cout << "Name: " << title << "\n";
     std::cout << "Author: " << author << "\n";
     std::cout << "Year: " << year << "\n";
     std::cout << "Genre: " << genre << "\n";
     std::cout << "ISBN: " << isbn << "\n";
-    std::cout << "Availability: " << available << "\n";
+    if (available) {
+        std::cout << "Availability: " << "yes" << "\n";
+    } else {
+        std::cout << "Availability: " << "no" << "\n";
+    }
+    std::cout << ((available) ? "Yes" : "No");
 }
 
 

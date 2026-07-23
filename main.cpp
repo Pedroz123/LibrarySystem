@@ -11,11 +11,11 @@
 
 void borrowBook(Library &library);
 void eraseBook(Library &library);
-Book inputBook();
+Book inputBook(Library& library);
 void returnBook(Library &library);
 void searchBook(Library &library);
 std::string getIsbn();
-int validation(int myInput);
+bool validation(int myInput);
 
 
 
@@ -43,7 +43,7 @@ int main() {
         switch (myInput) {
         case 1: {
             // add function
-            Book currentBook = inputBook();
+            Book currentBook = inputBook(library);
             library.addBook(currentBook);
             break;
         }
@@ -84,17 +84,17 @@ int main() {
 
 }
 
-Book inputBook() {
-
+Book inputBook(Library& library) {
+// https://www.geeksforgeeks.org/cpp/manipulators-in-c-with-examples/
     std::string name, author, genre, isbn, temp = "yes";
     int year;
     bool available;
-
+    // std::ws to formating spacing and be able to use getline after a getliner or a cin 
     std::cout << "\nName of the book: ";
-    getline(std::cin, name);
+    getline(std::cin >> std::ws, name);
             
     std::cout << "\nAuthor of the book: " ;
-    getline(std::cin, author);
+    getline(std::cin >> std::ws, author);
 
     std::cout << "\nYear of publication: ";
     std::cin >> year;
@@ -102,15 +102,22 @@ Book inputBook() {
     std::cout << "\nGenre: ";
     std::cin >> genre;
 
+    do {
     std::cout << "\nISBN (ten digits): ";
     std::cin >> isbn;
+    //std::cout << library.isAvailable(isbn);
+    } while (!(library.isbnExists(isbn)));
+    // check if the the isbn is the same
+    //The class that owns the data should also enforce the rules about that data
 
+        
     std::cout << "Is the book available (yes or no): ";
     std::cin >> temp;
 
     available  = (temp == "yes");
     Book currentBook(name, author, year, genre, isbn, available);
     return currentBook;
+
 }
 
 
@@ -164,7 +171,7 @@ std::string getIsbn() {
 }
 
 
-int validation(int myInput) {
+bool validation(int myInput) {
     return !(myInput >= 1 && myInput <= 7);
 }
 
