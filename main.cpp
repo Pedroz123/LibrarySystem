@@ -84,6 +84,7 @@ int main() {
 
 }
 
+
 Book inputBook(Library& library) {
 // https://www.geeksforgeeks.org/cpp/manipulators-in-c-with-examples/
     std::string name, author, genre, isbn, temp = "yes";

@@ -41,10 +41,9 @@ void Library::returnBook(const std::string& isbn) {
     for (auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) {
             if (currentBook.getAvailable()) {
-                std::cout << "The book is return already!" << "\n";
+                throw std::invalid_argument("The book is already return!");
             } else {
                 currentBook.setAvailable(true);
-                std::cout << "The book return is successful" << "\n";
             }
             return;
         }
@@ -57,10 +56,9 @@ void Library::borrowBook(const std::string& isbn) {
     for (auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) {
             if (currentBook.getAvailable()) {
-                std::cout << "Enjoy the book!" << "\n";
                 currentBook.setAvailable(false);
             } else {
-                std::cout << "The book is not available right now" << "\n";
+                throw std::invalid_argument("The book is not available right now");
             }
             return;
         }
@@ -86,7 +84,6 @@ void Library::eraseBook(const std::string& isbn) {
    if (removePoint == arr.end()) throw std::runtime_error("Book not found!"); // emergency
     arr.erase(removePoint, arr.end());
 }
-
 
 
 void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
