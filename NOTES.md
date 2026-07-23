@@ -1,4 +1,6 @@
-Things i learned:
+// TO RUN THE PROGRAM: g++ *.cpp -o run
+
+IMPORTANT:
     std::ws removes leading whitespace
     getline() reads spaces
     remove_if doesn't erase elements
