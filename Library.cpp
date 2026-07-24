@@ -7,14 +7,21 @@
 #include <exception>
 
 
-#include "Library.h"
 #include "Book.h"
+#include "Members.h"
+#include "Library.h"
 
 //Default
-Library::Library() {arr = {};}
+Library::Library() {
+    arr = {};
+    usersArr = {};
+}
 
 //Parameterized constructor
-Library::Library(const std::vector<Book>& newArr) {this-> arr = newArr;}
+Library::Library(const std::vector<Book>& newArr, const std::vector<Members>& usersArr) {
+    this-> arr = newArr;
+    this->usersArr = usersArr;
+}
 
 //Getters
 Book Library::getBook(const std::string& isbn) const {
@@ -31,6 +38,12 @@ bool Library::isbnExists(const std::string& isbn) {
     return true;
 }
 
+Members Library::getUser(int id) const {
+    for (const auto& currentUser : this->usersArr) {
+        if (currentUser.getId() == id) return currentUser;
+    }
+    throw std::runtime_error("User not found!"); // emergency
+}
 
 //Setters
 
@@ -87,10 +100,13 @@ void Library::eraseBook(const std::string& isbn) {
 
 
 void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
+void Library::AddUser(const Members& myUser) {usersArr.push_back(myUser);}
 
-
+//display
 void Library::displayAllBooks() const {
     for (const auto &currentBook : this->arr) {currentBook.display();}
 }
 
-
+void Library::displayAllUsers() const {
+    for (const auto& currentUser : this->usersArr) {currentUser.display();}
+}

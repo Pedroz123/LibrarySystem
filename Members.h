@@ -9,7 +9,8 @@
 #include <algorithm>
 #include <exception>
 
-class Member {
+
+class Members {
     private:
 
     std::string userName;
@@ -19,10 +20,10 @@ class Member {
     public:
 
     //Default
-    Member();
+    Members();
 
     //Parameteraized constructor
-    Member(std::string nameUser, int id, const std::vector<std::string>& borrowedBooks);
+    Members(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks);
 
     //Getters
     std::string getUserName() const;
@@ -34,7 +35,7 @@ class Member {
     void setId(int id);
 
     //display
-    void displayBorrowedBooks() const;
+    void display() const;
 
 };
 

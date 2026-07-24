@@ -9,7 +9,6 @@
 #include <algorithm>
 #include <exception>
 
-
 class Book {
     private:
     std::string title;
