@@ -24,6 +24,8 @@ Library::Library(const std::vector<Book>& newArr, const std::vector<Members>& us
 }
 
 //Getters
+
+    // Book
 Book Library::getBook(const std::string& isbn) const {
     for (const auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) return currentBook;
@@ -38,8 +40,20 @@ bool Library::isbnExists(const std::string& isbn) {
     return true;
 }
 
-Members Library::getUser(int id) const {
-    for (const auto& currentUser : this->usersArr) {
+
+    //Member
+bool Library:: idExists(int id) {
+    if (id <= 0) return false;
+    if (this->usersArr.size() == 0) return false;
+    for (const auto& currentId : this->usersArr) {
+        if (currentId.getId() == id) return true;
+    }
+    return false;
+}
+
+Members& Library::getUser(int id)  {
+    if (id <= 0) throw std::invalid_argument("Only positive numbers!");
+    for (auto& currentUser : this->usersArr) {
         if (currentUser.getId() == id) return currentUser;
     }
     throw std::runtime_error("User not found!"); // emergency
@@ -50,13 +64,18 @@ Members Library::getUser(int id) const {
 // const in string because "13224-123123-123" wont compile 
 // without const you can only pass a real modifable string variable
 
-void Library::returnBook(const std::string& isbn) {
+void Library::returnBook(const std::string& isbn, int id) {    
+    auto& currentMember = getUser(id);
+
+    currentMember.eraseBorrowedBook(isbn);
+
     for (auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) {
             if (currentBook.getAvailable()) {
                 throw std::invalid_argument("The book is already return!");
             } else {
                 currentBook.setAvailable(true);
+                
             }
             return;
         }
@@ -65,11 +84,15 @@ void Library::returnBook(const std::string& isbn) {
 }
 
 
-void Library::borrowBook(const std::string& isbn) {
+void Library::borrowBook(const std::string& isbn, int id) {
     for (auto& currentBook : this->arr) {
         if (currentBook.getISBN() == isbn) {
             if (currentBook.getAvailable()) {
                 currentBook.setAvailable(false);
+
+                auto& currentUser = getUser(id);
+                currentUser.addBook(isbn);
+
             } else {
                 throw std::invalid_argument("The book is not available right now");
             }
@@ -102,11 +125,35 @@ void Library::eraseBook(const std::string& isbn) {
 void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
 void Library::AddUser(const Members& myUser) {usersArr.push_back(myUser);}
 
+
+
+
 //display
 void Library::displayAllBooks() const {
     for (const auto &currentBook : this->arr) {currentBook.display();}
 }
 
 void Library::displayAllUsers() const {
+
     for (const auto& currentUser : this->usersArr) {currentUser.display();}
 }
+
+
+/*
+void Library::returnBook(const std::string& isbn, int id) {
+    for (auto& currentBook : this->arr) {
+        if (currentBook.getISBN() == isbn) {
+            if (currentBook.getAvailable()) {
+                throw std::invalid_argument("The book is already return!");
+            } else {
+                currentBook.setAvailable(true);
+                
+
+            }
+            return;
+        }
+    }
+    throw std::runtime_error("Book not found!"); // emergency
+}
+
+*/

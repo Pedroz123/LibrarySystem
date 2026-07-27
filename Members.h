@@ -33,6 +33,8 @@ class Members {
     //Setters
     void setUserName(const std::string& userName);
     void setId(int id);
+    void addBook(const std::string& borrowedBook);
+    void eraseBorrowedBook(std::string isbn);
 
     //display
     void display() const;

@@ -28,12 +28,13 @@ class Library {
     //Getters
     Book getBook(const std::string& isbn) const;
     bool isbnExists(const std::string& isbn);
-    Members getUser(int id) const;
+    Members& getUser(int id);
+    bool idExists(int id);
 
     //Setters
     void addBook(const Book& myBook);
-    void returnBook(const std::string& isbn);
-    void borrowBook(const std::string& isbn);
+    void returnBook(const std::string& isbn, int id);
+    void borrowBook(const std::string& isbn, int id);
     void eraseBook(const std::string& isbn);
     void AddUser(const Members& myUser);
 

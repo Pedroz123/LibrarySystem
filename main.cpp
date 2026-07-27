@@ -8,15 +8,18 @@
 
 #include "Book.h"
 #include "Library.h"
+#include "Members.h"
 
 void borrowBook(Library &library);
 void eraseBook(Library &library);
 Book inputBook(Library& library);
+Members inputUser (Library& library);
 void returnBook(Library &library);
 void searchBook(Library &library);
 std::string getIsbn();
 bool validation(int myInput);
-
+int getNewId(Library& library);
+int getRegularId() ;
 
 
 // TO RUN THE PROGRAM: g++ *.cpp -o run
@@ -24,7 +27,7 @@ bool validation(int myInput);
 int main() {
     Library library;
     std::cout << "Hello this is a Library System ";
-    int myInput = 3;
+    int myInput = 9;
     while (true) {
         
         do {
@@ -34,8 +37,11 @@ int main() {
             << "(3) Borrow Book \n" 
             << "(4) Retur Book \n"
             << "(5) Search Book \n"
-            << "(6) Remove book\n"
-            << "(7) Exit Book \n";
+            << "(6) Remove Book\n"
+            << "(7) Add new user\n"
+            << "(8) Show users\n"
+            << "(9) Exit Book \n"
+            << "--> ";
             std::cin >> myInput;
         } while (validation(myInput));
 
@@ -71,7 +77,16 @@ int main() {
             // erase book
             eraseBook(library);
             break;
-        }
+        } 
+        case 7: {
+            Members newUser = inputUser(library);
+            library.AddUser(newUser);
+            break;
+        } 
+        case 8: {
+            library.displayAllUsers();
+            break;
+        } 
         default:
             // exit            
             std::cout << "Goodbye" << "\n";
@@ -122,20 +137,46 @@ Book inputBook(Library& library) {
 }
 
 
-void borrowBook(Library &library) {
-    try {
-        library.borrowBook(getIsbn());
-        std::cout << "Enjoy your book!\n";
+Members inputUser (Library& library) {
+    std::string userName;
+    int id;
 
-    } catch(const std::exception& e) {
+    std::cout << "Hello there!! \n";
+    std::cout << "Fill this information to create your account!!\n";
+    std::cout << "User Name: ";
+    getline(std::cin >> std::ws, userName);
+    id  = getNewId(library);
+
+    Members currentMember(userName, id, {});
+
+    std::cout << "USER ADDED SUCCESFULLY \n";
+    return currentMember;
+
+
+}
+
+
+void borrowBook(Library &library) {
+    int id = -1;
+    try {
+        id = getRegularId();
+        library.getUser(id);   
+        library.borrowBook(getIsbn(), id);
+        std::cout << "Enjoy your book!\n";
+    } catch (const std::exception& e) {
         std::cerr << e.what() << '\n';
     }
+
+
 }
 
 
 void returnBook(Library &library) {
+    int id = -1;
     try {
-        library.returnBook(getIsbn());
+        id = getRegularId();
+        library.getUser(id);
+        library.returnBook(getIsbn(), id);
         std::cout << "Thanks for returning the book!\n";
     }   catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
@@ -173,6 +214,31 @@ std::string getIsbn() {
 
 
 bool validation(int myInput) {
-    return !(myInput >= 1 && myInput <= 7);
+    return !(myInput >= 1 && myInput <= 10);
 }
 
+
+int getNewId(Library& library) {
+    int id = 0;
+    //std::cout << "Fill the next information: \n";
+    while (true) {
+        std::cout << "ID: ";
+        std::cin >> id;
+        if (id <= 0) {
+            std::cout << "ID must be positive \n";
+        } else if (library.idExists(id)) {
+            std::cout << "ID already in use \n";
+        } else {
+            break;
+        }
+    }
+    return id;
+}
+
+
+int getRegularId() {
+    int id = -1;
+    std::cout << "Enter ID: ";
+    std::cin >> id;
+    return id;
+}

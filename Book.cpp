@@ -54,12 +54,13 @@ void Book::display() const{
     std::cout << "Year: " << year << "\n";
     std::cout << "Genre: " << genre << "\n";
     std::cout << "ISBN: " << isbn << "\n";
-    if (available) {
-        std::cout << "Availability: " << "yes" << "\n";
+
+    if (available == true) {
+        std::cout << "Availability: " << "YES" << "\n";
     } else {
-        std::cout << "Availability: " << "no" << "\n";
+        std::cout << "Availability: " << "NO" << "\n";
     }
-    std::cout << ((available) ? "Yes" : "No");
+    //std::cout << "Availability: " << ((available) ? "Yes" : "No");
 }
 
 
