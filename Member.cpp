@@ -6,11 +6,11 @@
 #include <algorithm>
 #include <exception>
 
-#include "Members.h"
+#include "Member.h"
 
 
 //Default
-Members::Members() {
+Member::Member() {
     userName = "";
     id = 0;
     borrowedBooks = {};
@@ -18,7 +18,7 @@ Members::Members() {
 
 
 //Parameteraized constructor
-Members::Members(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks) {
+Member::Member(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks) {
     this-> userName = userName;
     this-> id = id;
     this-> borrowedBooks = borrowedBooks;
@@ -26,16 +26,16 @@ Members::Members(const std::string& userName, int id, const std::vector<std::str
 
 
 //Getters
-std::string Members::getUserName() const {return userName;}
-int Members::getId() const {return id;}
-std::vector<std::string> Members::getBorredBooks() const {return borrowedBooks;}
+std::string Member::getUserName() const {return userName;}
+int Member::getId() const {return id;}
+std::vector<std::string> Member::getBorredBooks() const {return borrowedBooks;}
 
 
 //Setters
-void Members::setUserName(const std::string& userName) {this-> userName = userName;}
-void Members::setId(int id) {this->id = id;}
-void Members::addBook(const std::string& borrowedBook) {this->borrowedBooks.push_back(borrowedBook);}
-void Members::eraseBorrowedBook(std::string isbn) {
+void Member::setUserName(const std::string& userName) {this-> userName = userName;}
+void Member::setId(int id) {this->id = id;}
+void Member::addBook(const std::string& borrowedBook) {this->borrowedBooks.push_back(borrowedBook);}
+void Member::eraseBorrowedBook(std::string isbn) {
     auto removePoint = std::remove_if(borrowedBooks.begin(), borrowedBooks.end(), [&isbn](const std::string &b) {
         return b == isbn;
     });
@@ -45,7 +45,7 @@ void Members::eraseBorrowedBook(std::string isbn) {
 }
 
 //Display
-void Members::display() const {
+void Member::display() const {
     std::cout << "User name: " << userName << "\n"
         << "ID: " << id << "\n"
         << "Borrowed Books: ";

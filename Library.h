@@ -10,12 +10,12 @@
 #include <exception>
 
 #include "Book.h"
-#include "Members.h"
+#include "Member.h"
 
 class Library {
     private:
     std::vector<Book> arr;
-    std::vector<Members> usersArr;
+    std::vector<Member> usersArr;
     
     public:
 
@@ -23,12 +23,12 @@ class Library {
     Library();
 
     //Parameterized constructor
-    Library(const std::vector<Book>& newArr, const std::vector<Members>& usersArr);
+    Library(const std::vector<Book>& newArr, const std::vector<Member>& usersArr);
 
     //Getters
     Book getBook(const std::string& isbn) const;
     bool isbnExists(const std::string& isbn);
-    Members& getUser(int id);
+    Member& getUser(int id);
     bool idExists(int id);
 
     //Setters
@@ -36,7 +36,7 @@ class Library {
     void returnBook(const std::string& isbn, int id);
     void borrowBook(const std::string& isbn, int id);
     void eraseBook(const std::string& isbn);
-    void AddUser(const Members& myUser);
+    void AddUser(const Member& myUser);
 
 
 

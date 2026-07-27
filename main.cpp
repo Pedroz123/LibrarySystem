@@ -8,12 +8,12 @@
 
 #include "Book.h"
 #include "Library.h"
-#include "Members.h"
+#include "Member.h"
 
 void borrowBook(Library &library);
 void eraseBook(Library &library);
 Book inputBook(Library& library);
-Members inputUser (Library& library);
+Member inputUser (Library& library);
 void returnBook(Library &library);
 void searchBook(Library &library);
 std::string getIsbn();
@@ -79,7 +79,7 @@ int main() {
             break;
         } 
         case 7: {
-            Members newUser = inputUser(library);
+            Member newUser = inputUser(library);
             library.AddUser(newUser);
             break;
         } 
@@ -137,7 +137,7 @@ Book inputBook(Library& library) {
 }
 
 
-Members inputUser (Library& library) {
+Member inputUser (Library& library) {
     std::string userName;
     int id;
 
@@ -147,7 +147,7 @@ Members inputUser (Library& library) {
     getline(std::cin >> std::ws, userName);
     id  = getNewId(library);
 
-    Members currentMember(userName, id, {});
+    Member currentMember(userName, id, {});
 
     std::cout << "USER ADDED SUCCESFULLY \n";
     return currentMember;

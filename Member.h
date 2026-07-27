@@ -10,7 +10,7 @@
 #include <exception>
 
 
-class Members {
+class Member{
     private:
 
     std::string userName;
@@ -20,10 +20,10 @@ class Members {
     public:
 
     //Default
-    Members();
+    Member();
 
     //Parameteraized constructor
-    Members(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks);
+    Member(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks);
 
     //Getters
     std::string getUserName() const;

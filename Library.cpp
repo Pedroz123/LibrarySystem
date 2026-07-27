@@ -8,7 +8,7 @@
 
 
 #include "Book.h"
-#include "Members.h"
+#include "Member.h"
 #include "Library.h"
 
 //Default
@@ -18,7 +18,7 @@ Library::Library() {
 }
 
 //Parameterized constructor
-Library::Library(const std::vector<Book>& newArr, const std::vector<Members>& usersArr) {
+Library::Library(const std::vector<Book>& newArr, const std::vector<Member>& usersArr) {
     this-> arr = newArr;
     this->usersArr = usersArr;
 }
@@ -51,7 +51,7 @@ bool Library:: idExists(int id) {
     return false;
 }
 
-Members& Library::getUser(int id)  {
+Member& Library::getUser(int id)  {
     if (id <= 0) throw std::invalid_argument("Only positive numbers!");
     for (auto& currentUser : this->usersArr) {
         if (currentUser.getId() == id) return currentUser;
@@ -123,7 +123,7 @@ void Library::eraseBook(const std::string& isbn) {
 
 
 void Library::addBook(const Book& myBook) {arr.push_back(myBook);}
-void Library::AddUser(const Members& myUser) {usersArr.push_back(myUser);}
+void Library::AddUser(const Member& myUser) {usersArr.push_back(myUser);}
 
 
 
