@@ -23,7 +23,7 @@ class Library {
     Library();
 
     //Parameterized constructor
-    Library(const std::vector<Book>& newArr, const std::vector<Member>& usersArr);
+    Library(const std::vector<Book>& arr, const std::vector<Member>& usersArr);
 
     //Getters
     Book getBook(const std::string& isbn) const;

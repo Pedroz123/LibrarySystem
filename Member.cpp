@@ -10,19 +10,18 @@
 
 
 //Default
-Member::Member() {
-    userName = "";
-    id = 0;
-    borrowedBooks = {};
-}
+Member::Member()
+    :userName(""),
+    id(0),
+    borrowedBooks({}) {}
 
 
 //Parameteraized constructor
-Member::Member(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks) {
-    this-> userName = userName;
-    this-> id = id;
-    this-> borrowedBooks = borrowedBooks;
-}
+    // Member Initializer List
+Member::Member(const std::string& userName, int id, const std::vector<std::string>& borrowedBooks)
+    : userName(userName),
+    id(id),
+    borrowedBooks(borrowedBooks) {}
 
 
 //Getters

@@ -8,26 +8,27 @@
 
 
 #include "Book.h"
+//Default
+     // Member Initializer List
+Book::Book()
+    : title("No name"),
+    author("No author"), 
+    year(0),
+    genre("No genre"),
+    isbn("00000000000"),
+    available(true) {}
 
-Book::Book() {
-    title = "No name";
-    author = "No author";
-    year = 0;
-    genre = "No genre";
-    isbn = "0000000000";
-    available = true;
-}
-
-
+//Parameterized constructor
+    // Member Initializer List
 Book::Book(std::string title, std::string author, int year, 
-        std::string genre, std::string isbn, bool available) {
-        this-> title = title;
-        this-> author = author;
-        this-> year = year;
-        this-> genre = genre;
-        this-> isbn = isbn;
-        this-> available = available;
-}
+        std::string genre, std::string isbn, bool available) 
+    : 
+    title(title),
+    author(author),
+    year(year),
+    genre(genre),
+    isbn(isbn),
+    available(available) {}
 
 
 //Getters
@@ -54,13 +55,7 @@ void Book::display() const{
     std::cout << "Year: " << year << "\n";
     std::cout << "Genre: " << genre << "\n";
     std::cout << "ISBN: " << isbn << "\n";
-
-    if (available == true) {
-        std::cout << "Availability: " << "YES" << "\n";
-    } else {
-        std::cout << "Availability: " << "NO" << "\n";
-    }
-    //std::cout << "Availability: " << ((available) ? "Yes" : "No");
+    std::cout << "Availability: " << (available ? "Yes" : "No") << "\n";
 }
 
 

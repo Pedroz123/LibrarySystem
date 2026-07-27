@@ -12,16 +12,16 @@
 #include "Library.h"
 
 //Default
-Library::Library() {
-    arr = {};
-    usersArr = {};
-}
+    // Member Initializer List
+Library::Library()
+    : arr({}),
+    usersArr({}) {}
 
 //Parameterized constructor
-Library::Library(const std::vector<Book>& newArr, const std::vector<Member>& usersArr) {
-    this-> arr = newArr;
-    this->usersArr = usersArr;
-}
+    // Member Initializer List
+Library::Library(const std::vector<Book>& arr, const std::vector<Member>& usersArr)
+    : arr(arr),
+    usersArr(usersArr) {}
 
 //Getters
 
