@@ -137,9 +137,17 @@ void Library::displayAllUsers() const {
 
     for (const auto& currentUser : this->usersArr) {
         currentUser.display();
-        for (const auto& currentIsbn : currentUser.getBorredBooks()) {
-            for (const auto& currentBook : this->arr) {
-                if (currentBook.getISBN() == currentIsbn) std::cout << currentBook.getTitle() << "\n";
+        const auto & borrowed = currentUser.getBorredBooks();
+        
+        std::cout << "Books Cheked out: ";
+        if (!borrowed.empty()) {
+            std::cout << "\n";
+            for (const auto & isbn: borrowed) {
+                for (const auto& book : this -> arr) {
+                    if (book.getISBN() == isbn) {
+                        std::cout << " - " << book.getTitle() << "(ISBN: " << isbn << ")\n"; 
+                    }
+                }
             }
         }
     }
