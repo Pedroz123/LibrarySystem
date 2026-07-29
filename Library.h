@@ -30,6 +30,7 @@ class Library {
     bool isbnExists(const std::string& isbn);
     Member& getUser(int id);
     bool idExists(int id);
+   // void printName(const std::string& isbn); 
 
     //Setters
     void addBook(const Book& myBook);

@@ -49,11 +49,7 @@ void Member::display() const {
         << "ID: " << id << "\n"
         << "Borrowed Books: ";
 
-        if (borrowedBooks.size() == 0) {
+        if (borrowedBooks.size() == 0 ) {
             std::cout << "N/A" << "\n";
-        } else {
-            std::cout << "\n";
-            for (const auto& book : borrowedBooks) std::cout << book << "\n";
         }
-
 }

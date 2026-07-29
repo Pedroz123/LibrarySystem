@@ -135,25 +135,14 @@ void Library::displayAllBooks() const {
 
 void Library::displayAllUsers() const {
 
-    for (const auto& currentUser : this->usersArr) {currentUser.display();}
-}
-
-
-/*
-void Library::returnBook(const std::string& isbn, int id) {
-    for (auto& currentBook : this->arr) {
-        if (currentBook.getISBN() == isbn) {
-            if (currentBook.getAvailable()) {
-                throw std::invalid_argument("The book is already return!");
-            } else {
-                currentBook.setAvailable(true);
-                
-
+    for (const auto& currentUser : this->usersArr) {
+        currentUser.display();
+        for (const auto& currentIsbn : currentUser.getBorredBooks()) {
+            for (const auto& currentBook : this->arr) {
+                if (currentBook.getISBN() == currentIsbn) std::cout << currentBook.getTitle() << "\n";
             }
-            return;
         }
     }
-    throw std::runtime_error("Book not found!"); // emergency
 }
 
-*/
+
